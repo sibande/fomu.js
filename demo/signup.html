@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <title></title>
+    <style type="text/css">
+      html, body { width: 800px; margin: 0 auto; padding: 5px; }
+      input[type="text"] { width: 100%; }
+      input[type="text"], button { font-size: 1.4em; }
+      label { display: block; font-weight: bold; }
+      div { margin: 5px 0 }
+    </style>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <div>
+	<label>First Name:</label>
+	<input type="text" name="first_name" />
+      </div>
+      <div>
+	<label>Last Name:</label>
+	<input type="text" name="last_name" />
+      </div>
+      <div>
+	<label>Age:</label>
+	<input type="text" name="age" />
+      </div>
+      <div>
+	<label>E-Mail:</label>
+	<input type="text" name="email" />
+      </div>
+      <div>
+	<label>City:</label>
+	<input type="text" name="city" />
+      </div>
+      <div>
+	<label>Cell Number:</label>
+	<input type="text" name="cell_number" />
+      </div>
+      <div>
+	<label>Username:</label>
+	<input type="text" name="username" />
+      </div>
+      <div>
+	<label>Password:</label>
+	<input type="text" name="password" />
+      </div>
+      <div>
+	<label>Password (verify):</label>
+	<input type="text" name="password_verify" />
+      </div>
+      <div>
+	<button>Sign Up</button>
+      </div>
+    </form>
+
+    
+    <script type="text/javascript" src="../jquery-1.6.4.js"></script>
+    <script type="text/javascript" src="../src/core.js"></script>
+    <script type="text/javascript" src="../src/validators.js"></script>
+    <script type="text/javascript" src="../src/fields.js"></script>
+    <script type="text/javascript">
+      (function($) {
+	  
+	  function SignUpForm(data) {
+
+	      this.first_name = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.last_name = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.age = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.email = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.city = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.cell = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.username = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.password = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      this.password_verify = new TextField([
+		  new Required(),
+		  new Length(2, 35)
+	      ]);
+	      
+	      Fomu.call(this, data);
+	  }
+
+	  var form = new SignUpForm({'email': 'd', 'username': 'yo yo'});
+	  
+	  console.log(form.validates());
+	  
+	  console.log(form.errors());
+
+      })(jQuery)
+    </script>
+  </head>
+</html>
