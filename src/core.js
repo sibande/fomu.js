@@ -2,37 +2,40 @@
  * Fomu - Good JavaScript Forms
  */
 
+var Fomu = Fomu || {}
+
+
 /**
  * Validation error
  */
-function ValidationError(message) {
+Fomu.ValidationError =  function (message) {
     this.name = 'ValidationError';
     this.message = message;
 }
-ValidationError.prototype = new Error();
+Fomu.ValidationError.prototype = new Error();
 
-function StopValidation(message) {
+Fomu.StopValidation = function (message) {
     this.name = 'StopValidation';
     this.message = message;
 }
-StopValidation.prototype = new Error();
+Fomu.StopValidation.prototype = new Error();
 
-function ValueError(message) {
+Fomu.ValueError = function (message) {
     this.name = 'StopValidation';
     this.message = message;
 }
-ValueError.prototype = new Error();
+Fomu.ValueError.prototype = new Error();
 
 /**
  * Fomu
  */
-function Fomu(formdata) {
+Fomu.Fomu = function (formdata) {
 
     this.fields = {};
     this.formdata = formdata;
 
     for (property in this) {
-	if (this[property] instanceof Field) {
+	if (this[property] instanceof Fomu.Field) {
 	    this.fields[property] = this[property];
 	    this.fields[property].bind(property);
 	    this.fields[property].process(formdata);
@@ -60,3 +63,4 @@ function Fomu(formdata) {
 	return _errors
     }
 }
+

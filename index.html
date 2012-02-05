@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Fomu.JS</title>
+  </head>
+  <body>
+
+    <div>
+      <input type="text" name="email" />
+    </div>
+    
+    <script type="text/javascript" src="jquery-1.6.4.js"></script>
+    <script type="text/javascript" src="src/core.js"></script>
+    <script type="text/javascript" src="src/validators.js"></script>
+    <script type="text/javascript" src="src/fields.js"></script>
+    <script type="text/javascript">
+      function LoginForm(data) {
+	  this.email = new Fomu.TextField([new Fomu.Required(), new Fomu.Length(2, 14)]);
+	  this.username = new Fomu.TextField([new Fomu.Required(), new Fomu.Length(2, 6)]);
+	  
+	  Fomu.Fomu.call(this, data);
+      }
+      var form = new LoginForm({'email': 'd', 'username': 'yo yo'});
+
+      console.log(form.validates());
+
+      console.log(form.errors());
+
+      console.log(window);
+      
+      // console.log(form);
+      </script>
+  </body>
+</html>

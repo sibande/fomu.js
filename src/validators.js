@@ -6,22 +6,22 @@
 /**
  * Required
  */
-function Required(message) {
+Fomu.Required = function (message) {
     this.message = message;
 }
-Required.prototype.invoke = function(form, field) {
+Fomu.Required.prototype.invoke = function(form, field) {
     if ( ! field.data) {
 	if (this.message == null) {
 	    this.message = 'This field is required.';
 	}
-	throw new ValidationError(this.message);
+	throw new Fomu.ValidationError(this.message);
     }
 }
 
 /**
  * Length validation
  */
-function Length(min, max, message) {
+Fomu.Length = function (min, max, message) {
     if (min == null) { min = -1; }
     if (max == null) { max = -1; }
     this.min = min;
@@ -29,7 +29,7 @@ function Length(min, max, message) {
     this.message = message;
 }
 
-Length.prototype.invoke = function(form, field) {
+Fomu.Length.prototype.invoke = function(form, field) {
     var l = field.data ? field.data.length : 0;
     if ((l < this.min) || ((this.max != -1) && (l > this.max))) {
 	if (this.message == null) {
@@ -44,20 +44,20 @@ Length.prototype.invoke = function(form, field) {
 		    ' and ' + this.max + ' characters long.';
 	    }
 	}
-	throw new ValidationError(this.message);
+	throw new Fomu.ValidationError(this.message);
     }
 }
 
 /**
  * Number range validation
  */
-function NumberRange(min, max, message) {
+Fomu.NumberRange = function (min, max, message) {
     this.min = min;
     this.max = max;
     this.message = message;
 }
 
-NumberRange.prototype.invoke = function(form, field) {
+Fomu.NumberRange.prototype.invoke = function(form, field) {
     data = field.data;
     if ((data == null) || ((this.min != null) && data < this.min) || ((this.max != null) && data > this.max)) {
 	if (this.message != null) {
@@ -69,18 +69,18 @@ NumberRange.prototype.invoke = function(form, field) {
 		this.message = 'Number must be between '+this.min+' and '+this.max+'.';
 	    }
 	}
-	throw new ValidationError(this.message);
+	throw new Fomu.ValidationError(this.message);
     }
 }
 
 
-function Optional() {
+Fomu.Optional = function () {
     field_flags = ['optional'];
 }
 
-Optional.prototype.invoke = function(form, field) {
+Fomu.Optional.prototype.invoke = function(form, field) {
     if ( ! field.data) {
-	throw new StopValidation();
+	throw new Fomu.StopValidation();
     }
 }
 

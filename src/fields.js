@@ -1,7 +1,7 @@
 /**
  * Fields
  */
-function Field(validators, filters) {
+Fomu.Field = function (validators, filters) {
     this.errors = [];
     this.data = null;
     this.raw_data = null;
@@ -12,13 +12,13 @@ function Field(validators, filters) {
     this.raw_data = null;
 }
 
-Field.prototype.bind = function(name) {
+Fomu.Field.prototype.bind = function(name) {
     this.name = name;
 }
 /**
  * Process field data
  */
-Field.prototype.process = function(formdata) {
+Fomu.Field.prototype.process = function(formdata) {
 
     this.process_errors = [];
     if (formdata) {
@@ -37,21 +37,21 @@ Field.prototype.process = function(formdata) {
     }
 }
 
-Field.prototype.process_data = function(value) {
+Fomu.Field.prototype.process_data = function(value) {
     this.data = value;
 }
 
-Field.prototype.process_formdata = function(valuelist) {
+Fomu.Field.prototype.process_formdata = function(valuelist) {
     if (valuelist) {
 	this.data = valuelist[0];
     }
 }
-Field.prototype.pre_validate = function(form) {}
+Fomu.Field.prototype.pre_validate = function(form) {}
 
 /**
  * Validate field
  */
-Field.prototype.validate = function(form) {
+Fomu.Field.prototype.validate = function(form) {
 
     this.errors = this.process_errors;
 
@@ -61,10 +61,10 @@ Field.prototype.validate = function(form) {
     try {
     	this.pre_validate(form);
     } catch (error) {
-    	if (error instanceof StopValidation) {
+    	if (error instanceof Fomu.StopValidation) {
     	    this.errors.push(error.message);
     	    stop_validation = true;
-    	} else if (error instanceof ValidationError) {
+    	} else if (error instanceof Fomu.ValidationError) {
     	    this.errors.push(error.message);
     	}
     }
@@ -74,10 +74,10 @@ Field.prototype.validate = function(form) {
     	    try {
 		this.validators[validator].invoke(form, this);
     	    } catch (error) {
-    		if (error instanceof StopValidation) {
+    		if (error instanceof Fomu.StopValidation) {
     		    stop_validation = true;
     		    break;
-    		} else if (error instanceof ValidationError) {
+    		} else if (error instanceof Fomu.ValidationError) {
     		    this.errors.push(error.message);
     		}
     	    }
@@ -86,7 +86,7 @@ Field.prototype.validate = function(form) {
     try {
     	this.post_validate(form, stop_validation);
     } catch (error) {
-    	if (error instanceof ValueError) {
+    	if (error instanceof Fomu.ValueError) {
     	    this.errors.append(error.message);
     	}
     }
@@ -96,14 +96,14 @@ Field.prototype.validate = function(form) {
     return (this.errors.length == 0)
 }
 
-Field.prototype.post_validate = function(form) {}
+Fomu.Field.prototype.post_validate = function(form) {}
 
 /**
  * Text field
  */
-function TextField(validators) {
+Fomu.TextField = function (validators) {
     this.widget = 'TextField Widget';
-    Field.call(this, validators);
+    Fomu.Field.call(this, validators);
 }
-TextField.prototype = new Field();
+Fomu.TextField.prototype = new Fomu.Field();
 

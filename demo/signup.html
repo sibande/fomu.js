@@ -62,44 +62,44 @@
 	  
 	  function SignUpForm(data) {
 
-	      this.first_name = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.first_name = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.last_name = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.last_name = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.age = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.age = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.email = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.email = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.city = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.city = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.cell = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.cell = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.username = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.username = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.password = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.password = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
-	      this.password_verify = new TextField([
-		  new Required(),
-		  new Length(2, 35)
+	      this.password_verify = new Fomu.TextField([
+		  new Fomu.Required(),
+		  new Fomu.Length(2, 35)
 	      ]);
 	      
-	      Fomu.call(this, data);
+	      Fomu.Fomu.call(this, data);
 	  }
 
 	  var form = new SignUpForm({'email': 'd', 'username': 'yo yo'});
